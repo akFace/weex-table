@@ -95,7 +95,8 @@
 </template>
 <script>
 import { Utils } from 'weex-ui'
-let _self;
+import Binding from 'weex-bindingx';
+
 export default {
     data: function() {
         return {
@@ -104,7 +105,6 @@ export default {
         }
     },
     created() {
-        _self = this;
         for (let i = 0; i < 100; i++) {
             this.data_item.push(i);
         }
@@ -125,7 +125,7 @@ export default {
         bindingXscroll() {
             let scroller_right = this.$refs.scroller_right.ref;
             let scroller_right_head = this.$refs.scroller_right_head.ref;
-            this.$bindingx.bind({
+            Binding.bind({
                 eventType: 'scroll',
                 anchor: scroller_right,
                 props: [{
@@ -140,7 +140,7 @@ export default {
         },
         unbindXscroll() {
             if (this.bindingx_token) {
-                this.$bindingx.unbind({
+                Binding.unbind({
                     token: this.bindingx_token,
                     eventType: 'scroll'
                 });
